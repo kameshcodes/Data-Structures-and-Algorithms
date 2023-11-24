@@ -33,7 +33,7 @@ cold.leftchild = coke
 cold.rightchild = coldcoffee
 
 print()
-print(drink)
+# print(drink)
 
 
 def searchBT(rootnode, nodeValue):
@@ -42,17 +42,41 @@ def searchBT(rootnode, nodeValue):
     
     from queue import Queue
     que = Queue()
-    
     que.put(rootnode)
     
     while not que.empty():
-        root = que.get()
-        if root.data == nodeValue:
+        currentNode = que.get()
+        if currentNode.data == nodeValue:
             return f"'{nodeValue}' exist in a node in this tree"
-        if root.leftchild:
-            que.put(root.leftchild)
-        if root.rightchild:
-            que.put(root.rightchild)
+        if currentNode.leftchild:
+            que.put(currentNode.leftchild)
+        if currentNode.rightchild:
+            que.put(currentNode.rightchild)
     return f"'{nodeValue}' doesn't exist."
 
-print(searchBT(drink, "Coke"))
+# print(searchBT(drink, "Coke"))
+
+def insertNodeBT(rootnode, newNode):
+    if rootnode is None:
+        rootnode = newNode
+    else:
+        from queue import Queue
+        que = Queue()
+        que.put(rootnode)
+        while not que.empty():
+            currentNode = que.get()
+            if currentNode.leftchild:
+                que.put(currentNode.leftchild)
+            else:
+                currentNode.leftchild = newNode
+                return "Successfully Inserted"
+            if currentNode.rightchild:
+                que.put(currentNode.rightchild)
+            else:
+                currentNode.rightchild = newNode
+                return "Successfully Inserted"
+newNode = TreeNode("Black Coke")
+print(insertNodeBT(drink, newNode))
+newNode = TreeNode("Diet Coke")
+print(insertNodeBT(drink, newNode))
+print(drink)
