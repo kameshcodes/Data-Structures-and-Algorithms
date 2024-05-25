@@ -40,6 +40,5 @@ print(insertNode(newBST, 10))
 # print()
 # InOrderTraversal(newBST)
 print()
-levelOrderTraversal(newBST)
 
 

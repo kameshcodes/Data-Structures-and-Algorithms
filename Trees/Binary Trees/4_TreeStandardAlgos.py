@@ -75,8 +75,32 @@ def insertNodeBT(rootnode, newNode):
             else:
                 currentNode.rightchild = newNode
                 return "Successfully Inserted"
-newNode = TreeNode("Black Coke")
-print(insertNodeBT(drink, newNode))
-newNode = TreeNode("Diet Coke")
-print(insertNodeBT(drink, newNode))
+# newNode = TreeNode("Black Coke")
+# print(insertNodeBT(drink, newNode))
+# newNode = TreeNode("Diet Coke")
+# print(insertNodeBT(drink, newNode))
+# print(drink)
+
+def getDeepestNode(rootNode):
+    if rootNode is None:
+        return
+    else:
+        from queue import Queue
+        
+        que = Queue()
+        que.put(rootNode)
+        
+        deepest_node = None
+        while not que.empty:
+            currentNode = que.get()
+            deepest_node = currentNode.data 
+            
+            if currentNode.leftchild:
+                que.put(currentNode.leftchild)
+            if currentNode.rightchild:
+                que.put(currentNode.rightchild)
+        return deepest_node #current node at end iteration will be deepest node 
+
 print(drink)
+dnode = getDeepestNode(drink)
+print(dnode)

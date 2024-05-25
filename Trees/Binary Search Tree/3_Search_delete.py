@@ -105,6 +105,6 @@ print(insertNode(newBST, 10))
 
 #searchNode(newBST, 1000)
 
-deleteBST(newBST)
+#deleteBST(newBST)
 
 
