@@ -4,7 +4,7 @@ class Solution:
         Do not return anything, modify s in-place instead.
         """
         # Cheat sols 
-        s.reverse()
+        return s.reverse()
         # s[:] = s[::-1] #and not s=s[::-1] modification should be inplace
 
 
