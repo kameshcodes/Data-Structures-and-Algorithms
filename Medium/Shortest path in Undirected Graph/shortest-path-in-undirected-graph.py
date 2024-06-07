@@ -2,35 +2,35 @@
 from queue import Queue
 
 class Solution:
-    def get_adj(self, n, edges):
+
+        
+        
+    def shortestPath(self, edges, n, m, src):
         adj = [[] for i in range(n)]
         for edge in edges:
             u, v = edge[0], edge[1]
             adj[u].append(v)
             adj[v].append(u)
-        return adj
         
-        
-        
-    def shortestPath(self, edges, n, m, src):
-        adj = self.get_adj(n, edges)
-        visited = [0 for i in range(n)]
+        visited = [False for i in range(n)]
         dist = [-1 for i in range(n)]
-        q = Queue(maxsize=n)
         
-        visited[src] = 1
+        q = []
+        q.append(src)
+        visited[src] = True
         dist[src] = 0
-        q.put(src)
         
-        while q.empty()==False:
-            popped_node = q.get()
+        while len(q)>0:
+            node = q.pop(0)
             
-            for node in adj[popped_node]:
-                if visited[node]==0:
-                    dist[node] = dist[popped_node]+1
-                    visited[node]=1
-                    q.put(node)
+            for nbr_node in adj[node]:
+                if visited[nbr_node]==False:
+                    visited[nbr_node] = True
+                    dist[nbr_node] = dist[node]+1
+                    q.append(nbr_node)
+            
         return dist
+                    
 
 
 #{ 
