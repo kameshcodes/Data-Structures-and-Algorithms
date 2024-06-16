@@ -1,37 +1,39 @@
 #User function Template for python3
-from queue import Queue
 
 class Solution:
-
-        
-        
-    def shortestPath(self, edges, n, m, src):
+    
+    def get_adj_list(self,n, edges):
         adj = [[] for i in range(n)]
-        for edge in edges:
-            u, v = edge[0], edge[1]
-            adj[u].append(v)
-            adj[v].append(u)
         
-        visited = [False for i in range(n)]
+        for edge in edges:
+            adj[edge[0]].append(edge[1])
+            adj[edge[1]].append(edge[0])
+            
+        return adj
+        
+
+
+    def shortestPath(self, edges, n, m, src):
+        #write your code here 
         dist = [-1 for i in range(n)]
+        visited = [0 for i in range(n)]
+        
+        adj = self.get_adj_list(n, edges)
         
         q = []
         q.append(src)
-        visited[src] = True
-        dist[src] = 0
+        dist[src]=0
+        visited[src] = 1
         
-        while len(q)>0:
+        while len(q) > 0:
             node = q.pop(0)
             
             for nbr_node in adj[node]:
-                if visited[nbr_node]==False:
-                    visited[nbr_node] = True
-                    dist[nbr_node] = dist[node]+1
+                if visited[nbr_node]==0:
+                    visited[nbr_node]=1
                     q.append(nbr_node)
-            
+                    dist[nbr_node] = dist[node] + 1
         return dist
-                    
-
 
 #{ 
  # Driver Code Starts
