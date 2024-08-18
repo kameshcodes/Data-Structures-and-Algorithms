@@ -8,10 +8,7 @@ class Solution:
             max_area = max(area, max_area)
             if height[left] < height[right]:
                 left+=1
-            elif height[left] > height[right]:
-                right-=1
             else:
-                left +=1
                 right-=1
         return max_area
             
