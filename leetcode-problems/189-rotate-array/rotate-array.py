@@ -3,6 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for i in range(k):
-            nums.insert(0, nums.pop())
-        return nums
+        # # O(n) soln
+        # for i in range(k):
+        #     nums.insert(0, nums.pop())
+        # return nums
+
+        ## potential solution if inplace condition wasn't there
+        # nums = nums[-k:]+nums[:-k]
+        # return nums
+
+        k = k % len(nums)
+        nums[:] = nums[-k:] + nums[:-k]
