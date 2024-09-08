@@ -1,4 +1,3 @@
-
 class MinHeap:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -32,17 +31,15 @@ class MinHeap:
         left = self.left_child(idx)
         right = self.right_child(idx)
         smallest = idx
-        
-        if idx<self.size and self.arr[left] < self.arr[smallest]:
+        if left<self.size and self.arr[left] < self.arr[smallest]:
             smallest = left
-        if idx<self.size and self.arr[right] < self.arr[smallest]:
+        if right<self.size and self.arr[right] < self.arr[smallest]:
             smallest = right 
         
         
         if smallest != idx:
             self.arr[smallest], self.arr[idx] = self.arr[idx], self.arr[smallest]
-            self.minHeapify(smallest)
-            
+            self.minHeapify(smallest)  
         
         
         
