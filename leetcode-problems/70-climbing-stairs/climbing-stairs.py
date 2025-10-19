@@ -1,13 +1,10 @@
 class Solution:
-    
+    dp = {}  # class variable, shared by ALL instances
+
     def climbStairs(self, n: int) -> int:
-        dp = {}
-        def countWays(n):
-            if n in dp:
-                return dp[n]
-            elif n==0 or n==1:
-                return 1
-            else:
-                dp[n] = countWays(n-1)+countWays(n-2)
-                return dp[n]
-        return countWays(n)
+        if n == 0 or n == 1:
+            return 1
+        if n in Solution.dp:
+            return Solution.dp[n]
+        Solution.dp[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
+        return Solution.dp[n]
